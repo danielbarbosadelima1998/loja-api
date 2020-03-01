@@ -10,7 +10,13 @@ module.exports = {
           primaryKey: true,
           allowNull: false,
         },
-
+        categoryId: {
+          type: Sequelize.UUID,
+          references: {
+            model: 'categories',
+            key: 'id'
+          },
+        },
         code: {
           type: Sequelize.STRING,
           allowNull: false,
@@ -32,14 +38,6 @@ module.exports = {
         salePrice: {
           type: Sequelize.DECIMAL(20, 2),
           allowNull: false,
-        },
-        categoryId: {
-          type: Sequelize.UUID,
-          allowNull: true,
-          references: {
-            model: 'categories',
-            key: 'id'
-          },
         },
         createdAt: {
           type: Sequelize.DATE,

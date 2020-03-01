@@ -1,5 +1,4 @@
 const express = require('express');
-
 const defaultOptions = {
   attributes: {
     exclude: ['password'],
@@ -14,8 +13,11 @@ class baseController {
   }
 
   async index(req, res) {
+    const { query } = req;
     try {
-      const response = await this.model.findAll(defaultOptions);
+      const response = await this.model.findAll({
+        ...defaultOptions, ...query
+      });
       return res.status(200).json({
         data: response,
         content: {
@@ -35,9 +37,14 @@ class baseController {
   }
 
   async store(req, res) {
-    const { body } = req;
+    const { body, query } = req;
     try {
-      const response = await this.model.create(body, defaultOptions);
+      const data = await this.model.create(body, {
+        ...defaultOptions, ...query
+      });
+      
+      const response = await this.model.findByPk(data.id, {...query});
+
       return res.status(200).json({
         data: response,
         content: {

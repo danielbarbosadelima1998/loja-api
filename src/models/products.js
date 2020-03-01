@@ -32,12 +32,6 @@ class Products extends Model {
                 type: DataTypes.DECIMAL(20, 2),
                 allowNull: false,
             },
-            categoryId: {
-                type: DataTypes.UUID,
-                allowNull: true,
-                onUpdate: 'CASCADE',
-                onDelete: 'CASCADE',
-            }
         },
             {
                 sequelize,
@@ -46,8 +40,8 @@ class Products extends Model {
             })
     }
     static associate(models) {
-        this.hasOne(models.categories, {
-            foreignKey: 'id', as: 'category', through:'products_categories'
+        this.belongsTo(models.categories, {
+            foreignKey: 'categoryId', as: 'category',
         })
     }
 }

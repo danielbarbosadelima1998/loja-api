@@ -7,6 +7,7 @@ class Products extends baseController {
     super('/products', productsModel);
   }
 
+  
   routes() {
     const route = super.routes();
     // rotas internas
