@@ -42,8 +42,8 @@ class baseController {
       const data = await this.model.create(body, {
         ...defaultOptions, ...query
       });
-      
-      const response = await this.model.findByPk(data.id, {...query});
+
+      const response = await this.model.findByPk(data.id);
 
       return res.status(200).json({
         data: response,
