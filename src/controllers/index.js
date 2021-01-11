@@ -1,6 +1,6 @@
-const users = require('./users')
-const categories = require('./categories')
-const products = require('./products')
+const users = require('./UserController')
+const categories = require('./CategoryController')
+const products = require('./ProductController')
 
 module.exports = {
     users,
