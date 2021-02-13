@@ -1,14 +1,21 @@
 const express = require("express");
 const route = express.Router();
 const auth = require("./middlewares/auth");
+const validate = require("./middlewares/validate");
+const { required } = require("./middlewares/validations");
 const { users, categories, products } = require("./controllers");
 
-// User
+const validateUpdateUser = validate([
+    ["password", required],
+    ["username", required],
+    ["email", required],
+]);
+
 route.get("/users", users.index);
-route.get("/users/:id", auth, users.show);
+route.get("/users/:id", users.show);
 route.post("/users", users.store);
-route.delete("/users/:id", auth, users.destroy);
-route.put("/users/:id", auth, users.update);
+route.delete("/users/:id", users.destroy);
+route.put("/users/:id", validateUpdateUser, users.update);
 
 route.post("/login", users.login);
 

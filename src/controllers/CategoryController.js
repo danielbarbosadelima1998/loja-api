@@ -102,7 +102,7 @@ class CategoryController {
         });
       }
       await Category.destroy({ where: { id } });
-      return res.sendStatus(200);
+      return res.status(200).json(isRecord);
     } catch (error) {
       return res.status(500).json({
         error: error.message,

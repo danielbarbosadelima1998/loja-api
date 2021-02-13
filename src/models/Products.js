@@ -46,11 +46,11 @@ class Products extends Model {
       foreignKey: "categoryId",
       as: "category",
     });
-    this.belongsToMany(models.orders, {
-      foreignKey: "id",
-      //   as: "order",
-      through: "order_items",
-    });
+  //   this.belongsToMany(models.orders, {
+  //     foreignKey: "id",
+  //     //   as: "order",
+  //     through: "order_items",
+  //   });
   }
 }
 module.exports = Products;
